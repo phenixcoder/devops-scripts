@@ -12,7 +12,8 @@
     "semantic-release": "semantic-release --branch main",
     "prepare": "husky install",
     "prettier": "",
-    "lint": ""
+    "lint": "",
+    "build": ""
   },
   "repository": {
     "type": "git",
