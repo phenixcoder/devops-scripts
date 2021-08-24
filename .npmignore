@@ -1,0 +1,7 @@
+.npmignore
+.github
+.husky
+node_modules
+.gitignore
+.git
+package-lock.json

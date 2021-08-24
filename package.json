@@ -1,0 +1,43 @@
+{
+  "name": "devops-scripts",
+  "version": "0.0.0-development",
+  "description": "Common scripts used for extracting information",
+  "bin": {
+    "terraform-cloud": "./scripts/terraform/cli.js",
+    "tfc": "./scripts/terraform/cli.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "semantic-release": "semantic-release --branch main",
+    "prepare": "husky install",
+    "prettier": "",
+    "lint": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phenixcoder/devops-scripts.git"
+  },
+  "keywords": [
+    "devops"
+  ],
+  "author": "Phenixcoder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phenixcoder/devops-scripts/issues"
+  },
+  "homepage": "https://github.com/phenixcoder/devops-scripts#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "semantic-release": "^17.4.4",
+    "husky": "^7.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "follow-redirects": "^1.14.1"
+  }
+}
