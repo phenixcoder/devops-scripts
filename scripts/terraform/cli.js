@@ -60,6 +60,7 @@ if (
           console.log(JSON.stringify(value, null, '  '));
         }
       }).catch(err => {
+        // console.log(err);
         Help(err);
       });
     }

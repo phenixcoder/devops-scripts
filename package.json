@@ -39,6 +39,7 @@
     }
   },
   "dependencies": {
+    "command-line-args": "^5.2.0",
     "follow-redirects": "^1.14.1"
   }
 }
