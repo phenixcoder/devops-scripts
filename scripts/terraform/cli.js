@@ -3,6 +3,7 @@ const Environment = require("../shared/environment");
 const Help = require("./help");
 const OUTPUT = require("./resources/output");
 const STATE = require("./resources/state");
+const WORKSPACE = require("./resources/workspace");
 
 Object.byString = function(o, s) {
   s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
@@ -19,14 +20,16 @@ Object.byString = function(o, s) {
   return o;
 }
 
-const env = Environment(true);
+const env = Environment();
 
 const ACTIONS = [
   'get',
-  'set'
+  'set',
+  'list'
 ]
 
 const RESOURCES = [
+  'workspace',
   'output',
   'state'
 ]
@@ -38,19 +41,24 @@ if (
   try {
     let mod = null
     switch (env.resource) {
+      case 'workspace':
+        mod = WORKSPACE;
+        break;
       case 'output':
-        mod = OUTPUT
+        mod = OUTPUT;
         break;
       case 'state':
-        mod = STATE
+        mod = STATE;
         break;
       default:
         break;
     }
 
     if (mod && typeof mod[env.action]) {
-      mod[env.action](env.args).then(()=> {
-        console.log("ok");
+      mod[env.action](env.args).then((value)=> {
+        if (value) {
+          console.log(JSON.stringify(value, null, '  '));
+        }
       }).catch(err => {
         Help(err);
       });

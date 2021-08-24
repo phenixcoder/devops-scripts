@@ -9,9 +9,9 @@ function Help(errorMessage) {
   Github: https://github.com/phenixcoder/devops-scripts
 
   Usage:
-    terraform-cloud <action> <resource> [arguments]
+    terraform-cloud <resource> <action> [arguments]
   OR
-    tfc <action> <resource> [arguments]
+    tfc <resource> <action> [arguments]
 
   `);
 }

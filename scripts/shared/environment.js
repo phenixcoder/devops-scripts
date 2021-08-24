@@ -9,8 +9,8 @@ const Environment = (render) => {
       TFC_TOKEN: process.env.TFC_TOKEN,
       TFC_WORKSPACE: process.env.TFC_WORKSPACE,
     },
-    action: process.argv[2] || '',
-    resource: process.argv[3] || '',
+    action: process.argv[3] || '',
+    resource: process.argv[2] || '',
     args: process.argv.slice(4)
   }
   if (render) {

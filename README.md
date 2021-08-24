@@ -22,18 +22,20 @@ Terraform cloud scripts
 ### Usage:
 
 ```shell
-terraform-cloud <action> <resource> [arguments]
+terraform-cloud <resource> <action> [arguments]
 ```
   OR
 ```shell
-tfc <action> <resource> [arguments]
+tfc <resource> <action> [arguments]
 ```
 ### Available Allowed Resources:
+ - `workspace`
  - `output`
  - `state`
   
 ### Available Allowed Actions:
  - `get`
  - `set`
+ - `list`
 
 ---
