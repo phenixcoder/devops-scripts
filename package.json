@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "semantic-release": "semantic-release --branch main",
+    "semantic-release": "semantic-release --branches main",
     "prepare": "husky install",
     "prettier": "",
     "lint": "",
