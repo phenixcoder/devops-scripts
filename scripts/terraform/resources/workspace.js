@@ -19,8 +19,16 @@ const WORKSPACE = {
 
   list: async (args, returnOnly) => {
     if (!args[0]) {
-      throw 'Organisation Missing'
+      let responseOrgs = await Request('app.terraform.io', 'GET', `/api/v2/organizations/`, {
+        'Authorization': `Bearer ${Environment().secrets.TFC_TOKEN}`
+      });
+      let errorString = 'Organization Missing\nPlease pass organization from list below:\n';
+      JSON.parse(responseOrgs).data.forEach(org => {
+        errorString += ` - ${org.id}\n`
+      })
+      throw errorString;
     }
+
     const org = args[0];
 
     let response = await Request('app.terraform.io', 'GET', `/api/v2/organizations/${org}/workspaces`, {
@@ -29,6 +37,9 @@ const WORKSPACE = {
     response = JSON.parse(response);
     if (response.errors) {
       response.errors.forEach(error => {
+        if (error.status == 404) {
+          throw `Organization ${org} not found.`
+        }
         console.log(`error: [${error.status}] ${error.title}`);
       });
       throw "";
