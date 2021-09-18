@@ -1,6 +1,7 @@
 function Help(errorMessage) {
   if (errorMessage) {
     console.error(`Error: ${errorMessage}`);
+    // console.trace()
   }
   
   console.log(`
