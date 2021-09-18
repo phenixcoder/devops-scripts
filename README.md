@@ -22,20 +22,50 @@ Terraform cloud scripts
 ### Usage:
 
 ```shell
-terraform-cloud <resource> <action> [arguments]
+terraform-cloud <command> <sucommand> [arguments]
 ```
   OR
 ```shell
-tfc <resource> <action> [arguments]
+tfc <command> <sucommand> [arguments]
 ```
-### Available Allowed Resources:
+### Available Commands and Subcommands:
  - `workspace`
- - `output`
- - `state`
-  
-### Available Allowed Actions:
- - `get`
- - `set`
- - `list`
+   - `get` - Prints the provided workspace as output
+ 
+      Example:
+      ```shell
+      $ tfc workspace get orgnization/workspace
+      ```
+    - `list` - List all workspaces in Organization.
 
----
+      Note: In case of missing organization name, Throws an error and outputs all available organizations in the account.
+ 
+      Example:
+      ```shell
+      $ tfc workspace list
+
+      Error: Organization Missing
+      Please pass organization from list below:
+      - OrgA
+      - OrgB
+
+
+        Terraform Cloud - Devops Scripts
+
+        Github: https://github.com/phenixcoder/devops-scripts
+
+        Usage:
+          terraform-cloud <resource> <action> [arguments]
+        OR
+          tfc <resource> <action> [arguments]
+
+      ```
+      OR
+      ```shell
+      $ tfc workspace list orgnization
+      ```
+ - `output`
+    - `get` - Get the first output from latest state and prints as output
+    - `list` - Lista all output in the state.
+ - `state`
+   - `get` - Get the latest state and prints as output
