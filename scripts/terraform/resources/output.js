@@ -30,8 +30,12 @@ const OUTPUT = {
     const state = await Request('app.terraform.io', 'GET', `/api/v2/workspaces/${env.secrets.TFC_WORKSPACE}/current-state-version`, {
       'Authorization': `Bearer ${env.secrets.TFC_TOKEN}`
     });
-
-    const output_id = JSON.parse(state).data.relationships.outputs.data[0].id;
+    const stateObj = JSON.parse(state);
+    if (stateObj.data.relationships.outputs.data.length <= 0) {
+      console.log('error: No outputs in current workspace');
+      return;
+    }
+    const output_id = stateObj.data.relationships.outputs.data[0].id;
     
     let outputs = await Request('app.terraform.io', 'GET', `/api/v2/state-version-outputs/${output_id}`, {
       'Authorization': `Bearer ${env.secrets.TFC_TOKEN}`

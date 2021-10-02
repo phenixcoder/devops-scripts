@@ -1,5 +1,6 @@
 const { existsSync, readFileSync } = require('fs');
 const path = require('path');
+const yargs = require('yargs');
 
 const currentEnv = {
   TFCRC_PATH: undefined,
@@ -21,6 +22,15 @@ const Environment = (render) => {
       });
     }
 
+    const args = yargs(process.argv.slice(4))
+      .options('workspace', {
+        default: process.env.TFC_WORKSPACE || TFC_CONFIG.TFC_WORKSPACE || TFC_CONFIG.WORKSPACE_ID
+      })
+      .options('token', {
+        default: process.env.TFC_TOKEN || TFC_CONFIG.TFC_TOKEN
+      })
+      .argv;
+
     currentEnv.config = {
       // args: process.argv,
       paths: {
@@ -28,12 +38,12 @@ const Environment = (render) => {
         home: process.env.HOME,
       },
       secrets: {
-        TFC_TOKEN: process.env.TFC_TOKEN || TFC_CONFIG.TFC_TOKEN,
-        TFC_WORKSPACE: process.env.TFC_WORKSPACE || TFC_CONFIG.TFC_WORKSPACE || TFC_CONFIG.WORKSPACE_ID,
+        TFC_TOKEN: args.token,
+        TFC_WORKSPACE: args.workspace,
       },
       action: process.argv[3] || '',
       resource: process.argv[2] || '',
-      args: process.argv.slice(4)
+      args
     } 
   }
 
