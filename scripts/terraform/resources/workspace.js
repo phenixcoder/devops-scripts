@@ -18,18 +18,19 @@ const WORKSPACE = {
   },
 
   list: async (args, returnOnly) => {
-    if (!args[0]) {
+    if (!args._[0]) {
       let responseOrgs = await Request('app.terraform.io', 'GET', `/api/v2/organizations/`, {
         'Authorization': `Bearer ${Environment().secrets.TFC_TOKEN}`
       });
       let errorString = 'Organization Missing\nPlease pass organization from list below:\n';
-      JSON.parse(responseOrgs).data.forEach(org => {
-        errorString += ` - ${org.id}\n`
+      const orgs = JSON.parse(responseOrgs).data
+      orgs.forEach(org => {
+          errorString = `${errorString} - ${org.id}\n`;
       })
       throw errorString;
     }
-
-    const org = args[0];
+    
+    const org = args._[0];
 
     let response = await Request('app.terraform.io', 'GET', `/api/v2/organizations/${org}/workspaces`, {
       'Authorization': `Bearer ${Environment().secrets.TFC_TOKEN}`

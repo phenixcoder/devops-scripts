@@ -1,6 +1,6 @@
-function Help(errorMessage) {
-  if (errorMessage) {
-    console.error(`Error: ${errorMessage}`);
+function Help(error) {
+  if (error) {
+    console.error(`Error: ${typeof error === 'string' ? error : error.message}`);
     // console.trace()
   }
   
